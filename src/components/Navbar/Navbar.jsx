@@ -4,12 +4,9 @@ import {
   HomeIcon,
   AlertTriangle,
   Activity,
-  Settings,
   Bell,
   Map,
   BarChart2,
-  Menu,
-  X,
   Cloud,
 } from "lucide-react";
 import "./Navbar.css";
@@ -19,15 +16,11 @@ const Navbar = () => {
   const [activeLink, setActiveLink] = useState("dashboard");
   const [isMobile, setIsMobile] = useState(window.innerWidth <= 768);
   const [notificationCount, setNotificationCount] = useState(3);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const location = useLocation();
 
   useEffect(() => {
     const handleResize = () => {
       setIsMobile(window.innerWidth <= 768);
-      if (window.innerWidth > 768) {
-        setIsMobileMenuOpen(false);
-      }
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -43,11 +36,6 @@ const Navbar = () => {
 
   const handleLinkClick = (link) => {
     setActiveLink(link);
-    setIsMobileMenuOpen(false);
-  };
-
-  const toggleMobileMenu = () => {
-    setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
   const navLinks = [
@@ -119,7 +107,7 @@ const Navbar = () => {
             ))}
           </ul>
 
-          {/* Action Items */}
+          {/* Notification Icon */}
           <div className="navbar-actions">
             <button
               className="action-button notification-button"
@@ -130,56 +118,6 @@ const Navbar = () => {
                 <span className="notification-badge">{notificationCount}</span>
               )}
             </button>
-            <Link to="/settings">
-              <button className="action-button" aria-label="Settings">
-                <Settings size={20} />
-              </button>
-            </Link>
-            <div className="user-profile">
-              <img
-                src="/api/placeholder/32/32"
-                alt="User avatar"
-                className="avatar"
-              />
-            </div>
-          </div>
-
-          {/* Mobile Menu Toggle */}
-          <button
-            className="mobile-menu-toggle"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-          </button>
-        </div>
-
-        {/* Mobile Menu Dropdown */}
-        <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
-          <div className="mobile-menu-actions">
-            <button className="mobile-action-button">
-              <Bell size={20} />
-              <span>Notifications</span>
-              {notificationCount > 0 && (
-                <span className="mobile-notification-badge">
-                  {notificationCount}
-                </span>
-              )}
-            </button>
-            <Link to="/settings">
-              <button className="mobile-action-button">
-                <Settings size={20} />
-                <span>Settings</span>
-              </button>
-            </Link>
-            <div className="mobile-user-profile">
-              <img
-                src="/api/placeholder/32/32"
-                alt="User avatar"
-                className="mobile-avatar"
-              />
-              <span>Profile</span>
-            </div>
           </div>
         </div>
       </nav>
