@@ -1,0 +1,129 @@
+.map-view-container {
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    width: 100%;
+  }
+  
+  .map-header {
+    padding: 1rem;
+    background: #fff;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .map-header h1 {
+    margin: 0;
+    font-size: 1.5rem;
+  }
+  
+  .last-updated {
+    margin: 0.5rem 0 0;
+    color: #666;
+    font-size: 0.9rem;
+  }
+  
+  .map-view-map {
+    flex: 1;
+    position: relative;
+  }
+  
+  .map-content {
+    height: 100%;
+    position: relative;
+  }
+  
+  .map-container {
+    height: 100%;
+    width: 100%;
+  }
+  
+  .map-overlay {
+    position: absolute;
+    top: 1rem;
+    right: 1rem;
+    background: white;
+    padding: 1rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .legend h3 {
+    margin: 0 0 0.5rem;
+    font-size: 1rem;
+  }
+  
+  .legend ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .legend li {
+    margin: 0.25rem 0;
+    padding-left: 1.5rem;
+    position: relative;
+  }
+  
+  .legend li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 1rem;
+    height: 1rem;
+    border-radius: 50%;
+  }
+  
+  .severity-high::before {
+    background: #ff4d4f;
+  }
+  
+  .severity-medium::before {
+    background: #faad14;
+  }
+  
+  .severity-low::before {
+    background: #52c41a;
+  }
+  
+  .map-loading,
+  .map-error {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+  }
+  
+  .loading-icon,
+  .error-icon {
+    margin-bottom: 1rem;
+    width: 2rem;
+    height: 2rem;
+  }
+  
+  .loading-icon.spin {
+    animation: spin 1s linear infinite;
+  }
+  
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+  
+  .hazard-popup h4 {
+    margin: 0 0 0.5rem;
+    text-transform: uppercase;
+    font-size: 0.9rem;
+  }
+  
+  .hazard-popup p {
+    margin: 0;
+    font-size: 0.9rem;
+  }
