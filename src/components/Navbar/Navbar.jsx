@@ -109,7 +109,7 @@ const Navbar = () => {
 
           {/* Notification Icon */}
           <div className="navbar-actions">
-            <button
+           <Link to="/notifications"> <button
               className="action-button notification-button"
               aria-label="Notifications"
             >
@@ -117,7 +117,7 @@ const Navbar = () => {
               {notificationCount > 0 && (
                 <span className="notification-badge">{notificationCount}</span>
               )}
-            </button>
+            </button></Link>
           </div>
         </div>
       </nav>

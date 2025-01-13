@@ -12,6 +12,7 @@ import Settings from "./pages/Settings/Settings";
 // We need this to handle potential leaflet issues in React 18 Strict Mode
 import { useEffect } from "react";
 import L from "leaflet";
+import Notifications from "./components/Notification/Notification";
 
 // Initialize leaflet icons once at app level
 delete L.Icon.Default.prototype._getIconUrl;
@@ -48,6 +49,7 @@ const App = () => {
             <Route path="/" element={<Dashboard />} />
             <Route path="/map" element={<MapView />} />
             <Route path="/settings" element={<Settings />} />
+            <Route path="/notifications" element={<Notifications/>}/>
           </Routes>
         </main>
       </div>
