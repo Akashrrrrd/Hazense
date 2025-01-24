@@ -13,6 +13,7 @@ import Settings from "./pages/Settings/Settings";
 import { useEffect } from "react";
 import L from "leaflet";
 import Notifications from "./components/Notification/Notification";
+import InsuranceDashboard from "./pages/Insurance/Insurance";
 
 // Initialize leaflet icons once at app level
 delete L.Icon.Default.prototype._getIconUrl;
@@ -50,6 +51,7 @@ const App = () => {
             <Route path="/map" element={<MapView />} />
             <Route path="/settings" element={<Settings />} />
             <Route path="/notifications" element={<Notifications/>}/>
+            <Route path="/insurance" element={<InsuranceDashboard/>}/>
           </Routes>
         </main>
       </div>

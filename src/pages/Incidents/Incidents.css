@@ -7,7 +7,6 @@
   padding: 20px;
   background-color: #f8fafc;
   min-height: 100vh;
-
 }
 
 /* Header section styling */
@@ -224,7 +223,7 @@
 @media (max-width: 768px) {
   .incidents-container {
     padding: 15px;
-    margin-top: 15px;
+    margin-top: 50px;
   }
 
   .incidents-header h1 {

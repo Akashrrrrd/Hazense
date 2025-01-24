@@ -10,112 +10,112 @@ import {
   ResponsiveContainer,
 } from "recharts";
 import {
-  Map,
-  AlertTriangle,
-  CheckCircle,
-  Activity,
-  ArrowUp,
-  ArrowDown,
+  Shield,
+  TrendingUp,
+  TrendingDown,
+  Car,
+  MapPin,
+  AlertOctagon,
 } from "lucide-react";
 import "./Dashboard.css";
 
-const Dashboard = () => {
-  const [stats, setStats] = useState({
-    totalIncidents: 128,
-    activeHazards: 32,
-    resolvedHazards: 96,
-    criticalHazards: 8,
+const RiskAssessmentDashboard = () => {
+  const [riskStats, setRiskStats] = useState({
+    totalRiskScores: 512,
+    highRiskDrivers: 64,
+    lowRiskDrivers: 448,
+    criticalRiskIncidents: 16,
   });
 
-  const [trendData] = useState([
-    { name: "Jan", hazards: 65 },
-    { name: "Feb", hazards: 59 },
-    { name: "Mar", hazards: 80 },
-    { name: "Apr", hazards: 55 },
-    { name: "May", hazards: 48 },
-    { name: "Jun", hazards: 72 },
+  const [riskTrendData] = useState([
+    { month: "Jan", riskScore: 85 },
+    { month: "Feb", riskScore: 79 },
+    { month: "Mar", riskScore: 92 },
+    { month: "Apr", riskScore: 68 },
+    { month: "May", riskScore: 76 },
+    { month: "Jun", riskScore: 88 },
   ]);
 
-  // Simulate real-time updates
+  // Simulate AI-driven risk assessment updates
   useEffect(() => {
     const interval = setInterval(() => {
-      setStats((prev) => ({
+      setRiskStats((prev) => ({
         ...prev,
-        activeHazards: prev.activeHazards + Math.floor(Math.random() * 3) - 1,
-        totalIncidents: prev.totalIncidents + Math.floor(Math.random() * 2),
+        highRiskDrivers: prev.highRiskDrivers + Math.floor(Math.random() * 2),
+        totalRiskScores: prev.totalRiskScores + Math.floor(Math.random() * 3),
       }));
     }, 5000);
 
     return () => clearInterval(interval);
   }, []);
 
-  const getPercentageChange = () => {
-    const lastMonth = trendData[trendData.length - 1].hazards;
-    const previousMonth = trendData[trendData.length - 2].hazards;
+  const getRiskTrend = () => {
+    const lastMonth = riskTrendData[riskTrendData.length - 1].riskScore;
+    const previousMonth = riskTrendData[riskTrendData.length - 2].riskScore;
     return (((lastMonth - previousMonth) / previousMonth) * 100).toFixed(1);
   };
 
   return (
-    <div className="dashboard-container">
-      <header className="dashboard-header">
-        <h1>Real Time Hazard Detection System</h1>
+    <div className="risk-dashboard-container">
+      <header className="risk-dashboard-header">
+        <h1>AI Motor Insurance Risk Assessment</h1>
         <div className="last-updated">
-          Last updated: {new Date().toLocaleTimeString()}
+          Last analyzed: {new Date().toLocaleTimeString()}
         </div>
       </header>
 
-      <div className="dashboard-stats">
-        <div className="stat-card">
-          <AlertTriangle className="stat-icon" />
-          <h3>Total Incidents</h3>
-          <div className="stat-value">{stats.totalIncidents}</div>
-          <div className="stat-change positive">
-            <ArrowUp size={16} />
-            <span>12.5% from last month</span>
+      <div className="risk-dashboard-stats">
+        <div className="risk-stat-card">
+          <Shield className="risk-stat-icon" />
+          <h3>Total Risk Scores</h3>
+          <div className="risk-stat-value">{riskStats.totalRiskScores}</div>
+          <div className="risk-stat-change positive">
+            <TrendingUp size={16} />
+            <span>8.3% from last assessment</span>
           </div>
         </div>
 
-        <div className="stat-card critical">
-          <Activity className="stat-icon" />
-          <h3>Active Hazards</h3>
-          <div className="stat-value">{stats.activeHazards}</div>
-          <div className="stat-change negative">
-            <ArrowDown size={16} />
-            <span>3.2% from last week</span>
+        <div className="risk-stat-card critical">
+          <AlertOctagon className="risk-stat-icon" />
+          <h3>High-Risk Drivers</h3>
+          <div className="risk-stat-value">{riskStats.highRiskDrivers}</div>
+          <div className="risk-stat-change negative">
+            <TrendingDown size={16} />
+            <span>2.5% from previous period</span>
           </div>
         </div>
 
-        <div className="stat-card success">
-          <CheckCircle className="stat-icon" />
-          <h3>Resolved Hazards</h3>
-          <div className="stat-value">{stats.resolvedHazards}</div>
-          <div className="stat-change positive">
-            <ArrowUp size={16} />
-            <span>{getPercentageChange()}% increase</span>
+        <div className="risk-stat-card success">
+          <Car className="risk-stat-icon" />
+          <h3>Low-Risk Drivers</h3>
+          <div className="risk-stat-value">{riskStats.lowRiskDrivers}</div>
+          <div className="risk-stat-change positive">
+            <TrendingUp size={16} />
+            <span>{getRiskTrend()}% improvement</span>
           </div>
         </div>
       </div>
 
-      <div className="dashboard-charts">
-        <div className="chart-card">
-          <h3>Hazard Trends</h3>
+      <div className="risk-dashboard-charts">
+        <div className="risk-chart-card">
+          <h3>Risk Score Trends</h3>
           <ResponsiveContainer width="100%" height={300}>
-            <BarChart data={trendData}>
+            <BarChart data={riskTrendData}>
               <CartesianGrid strokeDasharray="3 3" />
-              <XAxis dataKey="name" />
-              <YAxis />
+              <XAxis dataKey="month" />
+              <YAxis domain={[0, 100]} />
               <Tooltip />
               <Legend />
-              <Bar dataKey="hazards" fill="#3b82f6" />
+              <Bar dataKey="riskScore" fill="#4ade80" />
             </BarChart>
           </ResponsiveContainer>
         </div>
 
-        <div className="chart-card">
-          <h3>Incident Locations</h3>
+        <div className="risk-chart-card">
+          <h3>Risk Hotspots</h3>
           <div className="map-placeholder">
-            <Map size={48} />
-            <p>Interactive map loading...</p>
+            <MapPin size={48} />
+            <p>AI Risk Mapping Loading...</p>
           </div>
         </div>
       </div>
@@ -123,4 +123,4 @@ const Dashboard = () => {
   );
 };
 
-export default Dashboard;
+export default RiskAssessmentDashboard;

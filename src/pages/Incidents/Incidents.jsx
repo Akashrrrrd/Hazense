@@ -9,10 +9,10 @@ const Incidents = () => {
 
   const getStatusColor = (status) => {
     const statusColors = {
-      "In Progress": "status-in-progress",
-      Resolved: "status-resolved",
-      Reported: "status-reported",
-      Critical: "status-critical",
+      "High Risk": "status-critical",
+      "Medium Risk": "status-in-progress",
+      "Low Risk": "status-resolved",
+      Resolved: "status-reported",
     };
     return statusColors[status] || "status-default";
   };
@@ -29,79 +29,79 @@ const Incidents = () => {
   const fetchIncidents = () => {
     setLoading(true);
     try {
-      // Simulated API call with expanded incident data
+      // Simulated motor insurance risk assessment incidents
       const data = [
         {
           id: 1,
-          title: "Power Outage",
+          title: "High-Risk Driver Profile",
           description:
-            "Multiple blocks affected by power outage. Emergency response teams dispatched.",
-          status: "In Progress",
+            "Multiple traffic violations detected. Potential insurance premium adjustment required.",
+          status: "High Risk",
           timestamp: "2025-01-12T10:30:00",
-          location: "Downtown",
-          severity: "High",
-          affectedArea: "5 city blocks",
-          estimatedResolution: "2 hours",
+          location: "Urban Driving Zone",
+          severity: "Critical",
+          affectedArea: "Driver Risk Assessment",
+          estimatedResolution: "Immediate Review",
         },
         {
           id: 2,
-          title: "Road Blockage",
+          title: "Accident Frequency Alert",
           description:
-            "Major traffic disruption due to multi-vehicle accident. Police and emergency services on scene.",
-          status: "Resolved",
+            "Driver involved in multiple minor accidents within 6 months. Risk profile escalation needed.",
+          status: "Medium Risk",
           timestamp: "2025-01-11T08:15:00",
-          location: "Main Street & 5th Avenue",
-          severity: "Medium",
-          affectedArea: "Intersection",
-          estimatedResolution: "Cleared",
+          location: "Suburban Area",
+          severity: "High",
+          affectedArea: "Claims History",
+          estimatedResolution: "Risk Reassessment",
         },
         {
           id: 3,
-          title: "Water Supply Issue",
+          title: "Safe Driving Bonus",
           description:
-            "Emergency maintenance required for main water supply line. Temporary service interruption expected.",
-          status: "Critical",
+            "Driver maintains excellent driving record. Qualifies for insurance premium reduction.",
+          status: "Low Risk",
           timestamp: "2025-01-12T09:00:00",
-          location: "Elmwood District",
-          severity: "High",
-          affectedArea: "Entire neighborhood",
-          estimatedResolution: "4 hours",
+          location: "Rural District",
+          severity: "Low",
+          affectedArea: "Driver Performance",
+          estimatedResolution: "Bonus Approval",
         },
         {
           id: 4,
-          title: "Fire Alert",
+          title: "Telematics Data Anomaly",
           description:
-            "Residential building fire reported. Firefighters and emergency personnel on site.",
-          status: "In Progress",
+            "Unusual driving patterns detected. Requires comprehensive risk analysis.",
+          status: "Medium Risk",
           timestamp: "2025-01-12T11:00:00",
-          location: "Hillside Apartments",
-          severity: "Critical",
-          affectedArea: "Building and adjacent structures",
-          estimatedResolution: "Under evaluation",
+          location: "Metropolitan Region",
+          severity: "Medium",
+          affectedArea: "Driving Behavior",
+          estimatedResolution: "Detailed Investigation",
         },
         {
           id: 5,
-          title: "Gas Leak",
+          title: "New Driver Risk Assessment",
           description:
-            "Gas leak detected in industrial area. Evacuation and containment measures underway.",
-          status: "Reported",
+            "Young driver with limited driving experience. Initial risk profile evaluation.",
+          status: "High Risk",
           timestamp: "2025-01-12T08:45:00",
-          location: "Industrial Park Zone A",
+          location: "Citywide",
           severity: "High",
-          affectedArea: "3 warehouses",
-          estimatedResolution: "6 hours",
+          affectedArea: "New Driver Segment",
+          estimatedResolution: "Risk Profiling",
         },
         {
           id: 6,
-          title: "Severe Weather Warning",
+          title: "Safe Driver Recognition",
           description:
-            "Heavy rain and strong winds expected. Flooding risk in low-lying areas.",
-          status: "Active",
+            "Consistent safe driving behavior over extended period. Recommended for premium benefits.",
+          status: "Low Risk",
           timestamp: "2025-01-12T07:30:00",
-          location: "Coastal Region",
-          severity: "High",
-          affectedArea: "Entire coastal area",
-          estimatedResolution: "Monitor updates",
+          location: "Nationwide",
+          severity: "Low",
+          affectedArea: "Driver Rewards",
+          estimatedResolution: "Benefit Approval",
         },
       ];
 
@@ -123,7 +123,7 @@ const Incidents = () => {
   return (
     <div className="incidents-container">
       <header className="incidents-header">
-        <h1>Real-Time Incident Reports</h1>
+        <h1>Motor Insurance Risk Assessment</h1>
         <div className="refresh-section">
           <button
             onClick={fetchIncidents}
@@ -142,7 +142,7 @@ const Incidents = () => {
       {loading ? (
         <div className="loading">
           <RefreshCw className="spin" size={24} />
-          <span>Loading incidents...</span>
+          <span>Loading risk assessments...</span>
         </div>
       ) : incidents.length > 0 ? (
         <ul className="incident-list">
@@ -167,7 +167,7 @@ const Incidents = () => {
               <div className="incident-metadata">
                 <div className="metadata-item">
                   <Clock size={16} />
-                  <span>Reported: {formatTimeAgo(incident.timestamp)}</span>
+                  <span>Assessed: {formatTimeAgo(incident.timestamp)}</span>
                 </div>
                 <div className="metadata-item">
                   <MapPin size={16} />
@@ -181,11 +181,11 @@ const Incidents = () => {
                   <span className="detail-value">{incident.severity}</span>
                 </div>
                 <div className="detail-item">
-                  <span className="detail-label">Affected Area:</span>
+                  <span className="detail-label">Assessment Area:</span>
                   <span className="detail-value">{incident.affectedArea}</span>
                 </div>
                 <div className="detail-item">
-                  <span className="detail-label">Est. Resolution:</span>
+                  <span className="detail-label">Next Step:</span>
                   <span className="detail-value">
                     {incident.estimatedResolution}
                   </span>
@@ -197,7 +197,7 @@ const Incidents = () => {
       ) : (
         <div className="no-incidents">
           <AlertCircle size={24} />
-          <p>No incidents reported at the moment.</p>
+          <p>No risk assessments at the moment.</p>
         </div>
       )}
     </div>
